@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <h2><b>Calculator</b></h2>
+  <h2><b>Awesome Books</b></h2>
 
 </div>
 
@@ -25,9 +25,9 @@
 - [📝 License](#license)
 
 
-# 📖 [Calculator] 
+# 📖 Awesome Books 
 
-This is a simple SPA react application that performs basic mathmatical calculations. 
+This is a simple SPA react application that allows users to browse books by category. 
 
 
 ## 🛠️ Built With <a name="built-with"></a>
@@ -59,7 +59,7 @@ This is a simple SPA react application that performs basic mathmatical calculati
 
 ### Key Features 
 
-- *Perform Basic Calculations*
+- *List books and their ratings*
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,9 +78,9 @@ In order to run this project you need:
 Clone this repository to your desired folder:
 
 ```sh
-  cd Calculator
+  cd Awesome-Book
 
-  git clone https://github.com/habitoz/calculator.git
+  git clone https://github.com/habitoz/awesome-book-react.git
 
 ```
 
