@@ -1,6 +1,7 @@
 import React from 'react';
 import Style from './Footer.module.css';
 
+/*  eslint-disable react/jsx-curly-brace-presence */
 export default function Footer() {
   return (
     <footer className={`${Style.FooterContainer}`}>

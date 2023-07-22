@@ -4,7 +4,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 import Style from './BookCard.module.css';
 import 'react-circular-progressbar/dist/styles.css';
 
-/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/anchor-is-valid, react/jsx-curly-brace-presence */
 function BookCard() {
   return (
     <div className={`${Style.CardContainer}`}>
