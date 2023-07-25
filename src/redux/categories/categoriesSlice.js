@@ -6,11 +6,8 @@ const categoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    remove(store, action) {
-      return store.filter((book) => book.id !== action.payload);
-    },
-    add(store, action) {
-      store.push(action.payload);
+    status() {
+      return 'Under construction';
     },
   },
 });
