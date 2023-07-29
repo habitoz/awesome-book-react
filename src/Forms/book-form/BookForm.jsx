@@ -3,7 +3,7 @@ import Style from './BookForm.module.css';
 
 /* eslint-disable jsx-a11y/anchor-is-valid, react/jsx-curly-brace-presence, react/prop-types */
 export default function BookForm({ addBookHandler }) {
-  const [form, setForm] = useState({ title: '', category: '' });
+  const [form, setForm] = useState({ title: '', author: '', category: '' });
   const handleInput = ($e) => {
     setForm((pState) => ({ ...pState, [$e.target.name]: $e.target.value }));
   };
@@ -17,6 +17,7 @@ export default function BookForm({ addBookHandler }) {
       <h1 className={`${Style.FormTitle}`}>add new book</h1>
       <form action="" method="post" onSubmit={addNewBook} className={`${Style.Form}`}>
         <input type="text" name="title" placeholder="Book Title" onInput={handleInput} className={`${Style.FormInput}`} />
+        <input type="text" name="author" placeholder="Book Author" onInput={handleInput} className={`${Style.FormInputAuthor}`} />
         <select className={`${Style.FormCategory}`} onChange={handleInput} value={form.category} name="category" placeholder="Category" id="">
           <option value="catagory 1">Cat 1</option>
           <option value="catagory 2">Cat 2</option>

@@ -20,6 +20,16 @@
   color: #000;
 }
 
+.FormInputAuthor {
+  width: 17.813rem;
+  height: 3rem;
+  border: 1px solid var(--grayColor);
+  background-color: #fff;
+  padding: 1px 10px;
+  outline: none;
+  color: #000;
+}
+
 .FormTitle {
   font-family: Montserrat, sans-serif;
   font-size: 1.25rem;
