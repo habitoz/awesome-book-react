@@ -5,9 +5,7 @@ import Style from './BookCard.module.css';
 import 'react-circular-progressbar/dist/styles.css';
 
 /* eslint-disable jsx-a11y/anchor-is-valid, react/prop-types,react/jsx-curly-brace-presence */
-const Button = ({ removeBookHandler }) => (
-  <button type="button" onClick={removeBookHandler} className={`${Style.RemoveBtn}`}> Remove Book</button>
-);
+
 function BookCard({
   title, category, author, removeBookHandler,
 }) {
@@ -19,7 +17,7 @@ function BookCard({
         <p className={`${Style.BookAuthor}`}>{author}</p>
         <ul className={`${Style.ActionsContainer}`}>
           <li className={`${Style.Action}`}><a href="#" className={`${Style.ActionTag}`}>Comments</a></li>
-          <li className={`${Style.Action}`}><a href="#" className={`${Style.ActionTag}`}>Remove</a></li>
+          <li className={`${Style.Action}`}><a href="#" onClick={removeBookHandler} className={`${Style.ActionTag}`}>Remove</a></li>
           <li className={`${Style.Action}`}><a href="#" className={`${Style.ActionTag}`}>Edit</a></li>
         </ul>
       </div>
@@ -37,7 +35,6 @@ function BookCard({
           <p className={`${Style.ChapterInfo}`}>Current Chapter</p>
           <p className={`${Style.Chapter}`}>Current Chapter</p>
           <button type="button" className={`${Style.ProgressBtn}`}> Update Progress</button>
-          <Button removeBookHandler={removeBookHandler} />
         </div>
       </div>
     </div>
