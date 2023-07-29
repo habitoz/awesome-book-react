@@ -5,7 +5,6 @@ import Style from './Books.module.css';
 import BookForm from '../../Forms/book-form/BookForm';
 import { removeBook, addBook } from '../../redux/books/booksSlice';
 
-/*  eslint-disable react/jsx-curly-brace-presence, no-unused-vars */
 export default function Books() {
   const books = useSelector((state) => state.book);
   const dispatch = useDispatch();

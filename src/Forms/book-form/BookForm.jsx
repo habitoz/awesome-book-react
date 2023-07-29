@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Style from './BookForm.module.css';
 
-/* eslint-disable jsx-a11y/anchor-is-valid, react/jsx-curly-brace-presence, react/prop-types */
-export default function BookForm({ addBookHandler }) {
+function BookForm({ addBookHandler }) {
   const [form, setForm] = useState({ title: '', author: '', category: '' });
   const handleInput = ($e) => {
     setForm((pState) => ({ ...pState, [$e.target.name]: $e.target.value }));
@@ -29,3 +29,9 @@ export default function BookForm({ addBookHandler }) {
     </div>
   );
 }
+
+BookForm.propTypes = {
+  addBookHandler: PropTypes.func.isRequired,
+};
+
+export default BookForm;
