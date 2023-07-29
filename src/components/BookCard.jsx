@@ -1,11 +1,13 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import PropTypes from 'prop-types';
 import Style from './BookCard.module.css';
 import 'react-circular-progressbar/dist/styles.css';
 
-/* eslint-disable jsx-a11y/anchor-is-valid, react/prop-types,react/jsx-curly-brace-presence */
-function BookCard({ title, category, author }) {
+function BookCard({
+  title, category, author, removeBookHandler,
+}) {
   return (
     <div className={`${Style.CardContainer}`}>
       <div className={`${Style.BookInfoContainer}`}>
@@ -13,9 +15,9 @@ function BookCard({ title, category, author }) {
         <h2 className={`${Style.BookTitle}`}>{title}</h2>
         <p className={`${Style.BookAuthor}`}>{author}</p>
         <ul className={`${Style.ActionsContainer}`}>
-          <li className={`${Style.Action}`}><a href="#" className={`${Style.ActionTag}`}>Comments</a></li>
-          <li className={`${Style.Action}`}><a href="#" className={`${Style.ActionTag}`}>Remove</a></li>
-          <li className={`${Style.Action}`}><a href="#" className={`${Style.ActionTag}`}>Edit</a></li>
+          <li className={`${Style.Action}`}><a href="/" className={`${Style.ActionTag}`}>Comments</a></li>
+          <li className={`${Style.Action}`}><a href="/" onClick={removeBookHandler} className={`${Style.ActionTag}`}>Remove</a></li>
+          <li className={`${Style.Action}`}><a href="/" className={`${Style.ActionTag}`}>Edit</a></li>
         </ul>
       </div>
       <div className={`${Style.ChapterProgressContainer}`}>
@@ -38,4 +40,10 @@ function BookCard({ title, category, author }) {
   );
 }
 
+BookCard.propTypes = {
+  title: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  removeBookHandler: PropTypes.func.isRequired,
+};
 export default BookCard;

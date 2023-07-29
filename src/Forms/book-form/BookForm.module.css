@@ -17,7 +17,17 @@
   background-color: #fff;
   padding: 1px 10px;
   outline: none;
-  color: #c4c4c4;
+  color: #000;
+}
+
+.FormInputAuthor {
+  width: 17.813rem;
+  height: 3rem;
+  border: 1px solid var(--grayColor);
+  background-color: #fff;
+  padding: 1px 10px;
+  outline: none;
+  color: #000;
 }
 
 .FormTitle {
@@ -36,7 +46,7 @@
   background-color: #fff;
   padding: 1px 10px;
   outline: none;
-  color: #c4c4c4;
+  color: #000;
 }
 
 .FormBtn {
