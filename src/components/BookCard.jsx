@@ -8,6 +8,11 @@ import 'react-circular-progressbar/dist/styles.css';
 function BookCard({
   title, category, author, removeBookHandler,
 }) {
+  const removeBook = ($e) => {
+    $e.preventDefault();
+    removeBookHandler();
+  };
+
   return (
     <div className={`${Style.CardContainer}`}>
       <div className={`${Style.BookInfoContainer}`}>
@@ -16,7 +21,7 @@ function BookCard({
         <p className={`${Style.BookAuthor}`}>{author}</p>
         <ul className={`${Style.ActionsContainer}`}>
           <li className={`${Style.Action}`}><a href="/" className={`${Style.ActionTag}`}>Comments</a></li>
-          <li className={`${Style.Action}`}><a href="/" onClick={removeBookHandler} className={`${Style.ActionTag}`}>Remove</a></li>
+          <li className={`${Style.Action}`}><a href="/" onClick={removeBook} className={`${Style.ActionTag}`}>Remove</a></li>
           <li className={`${Style.Action}`}><a href="/" className={`${Style.ActionTag}`}>Edit</a></li>
         </ul>
       </div>

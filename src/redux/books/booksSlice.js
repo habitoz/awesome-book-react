@@ -1,38 +1,102 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { deleteRequest, getRequest, postRequest } from '../../services/apiService';
 
-const initialState = [
-  {
-    id: 'item1',
-    title: 'The Great Gatsby',
-    author: 'John Smith',
-    category: 'Fiction',
+let AppId = localStorage.getItem('AppId');
+if (!AppId) {
+  const getId = async () => {
+    AppId = await postRequest('');
+    localStorage.setItem('AppId', AppId);
+  };
+  getId();
+}
+
+export const fetchBooks = createAsyncThunk(
+  'books/fetchBooks',
+  async () => {
+    const response = await getRequest(`${AppId}/books`);
+    return response || {};
   },
-  {
-    id: 'item2',
-    title: 'Anna Karenina',
-    author: 'Leo Tolstoy',
-    category: 'Fiction',
+);
+
+export const removeBook = createAsyncThunk(
+  'books/removeBook',
+  async (bookId, { rejectWithValue }) => {
+    try {
+      await deleteRequest(`${AppId}/books/${bookId}`);
+      return bookId;
+    } catch (err) {
+      return rejectWithValue('failed to remove book.');
+    }
   },
-  {
-    id: 'item3',
-    title: 'The Selfish Gene',
-    author: 'Richard Dawkins',
-    category: 'Nonfiction',
+);
+
+export const addBook = createAsyncThunk(
+  'books/addBook',
+  async (data, { rejectWithValue }) => {
+    try {
+      data.item_id = (Math.random() * 100000).toFixed(0);
+      await postRequest(`${AppId}/books`, data);
+      return data;
+    } catch (err) {
+      return rejectWithValue('failed to add book.');
+    }
   },
-];
+);
+
+const initialState = {
+  books: [],
+  work: null,
+  error: null,
+};
 
 const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    removeBook(store, action) {
-      return store.filter((book) => book.id !== action.payload);
-    },
-    addBook(store, action) {
-      const id = (Math.random() * 1000000).toFixed(0);
-      store.push({ ...action.payload, id });
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBooks.pending, (state) => {
+        state.work = 'FetchBook';
+        state.error = null;
+      })
+      .addCase(fetchBooks.fulfilled, (state, action) => {
+        const parsedBooks = Object.keys(action.payload).reduce((acc, key) => (
+          [...acc, { ...action.payload[key][0], item_id: key }]
+        ), []);
+        state.books = parsedBooks;
+        state.work = null;
+        state.error = null;
+      })
+      .addCase(fetchBooks.rejected, (state) => {
+        state.work = false;
+        state.error = 'Failed to fetch books from the API.';
+      })
+      .addCase(addBook.pending, (state) => {
+        state.work = 'AddBook';
+        state.error = null;
+      })
+      .addCase(addBook.fulfilled, (state, action) => {
+        state.books.push(action.payload);
+        state.work = null;
+      })
+      .addCase(addBook.rejected, (state, action) => {
+        state.work = null;
+        state.error = action.payload;
+      })
+      .addCase(removeBook.pending, (state) => {
+        state.work = 'RemoveBook';
+        state.error = null;
+      })
+      .addCase(removeBook.fulfilled, (state, action) => {
+        state.books = state.books.filter((book) => book.item_id !== action.payload);
+        state.work = null;
+      })
+      .addCase(removeBook.rejected, (state, action) => {
+        state.work = null;
+        state.error = action.payload;
+      });
   },
 });
-export const { removeBook, addBook } = booksSlice.actions;
+
 export default booksSlice.reducer;
