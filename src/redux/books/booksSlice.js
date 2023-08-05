@@ -46,6 +46,7 @@ export const addBook = createAsyncThunk(
 const initialState = {
   books: [],
   work: null,
+  bookInProcess: null,
   error: null,
 };
 
@@ -84,8 +85,9 @@ const booksSlice = createSlice({
         state.work = null;
         state.error = action.payload;
       })
-      .addCase(removeBook.pending, (state) => {
+      .addCase(removeBook.pending, (state, action) => {
         state.work = 'RemoveBook';
+        state.bookInProcess = action.payload;
         state.error = null;
       })
       .addCase(removeBook.fulfilled, (state, action) => {

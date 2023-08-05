@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import Style from './BookForm.module.css';
+import Loader from '../../components/Loader';
 
 function BookForm({ addBookHandler }) {
   const [form, setForm] = useState({ title: '', author: '', category: '' });
+  const { work } = useSelector((state) => state.book);
+
   const handleInput = ($e) => {
     setForm((pState) => ({ ...pState, [$e.target.name]: $e.target.value }));
   };
@@ -24,7 +28,16 @@ function BookForm({ addBookHandler }) {
           <option value="catagory 3">Cat 3</option>
           <option value="catagory 4">Cat 4</option>
         </select>
-        <button className={`${Style.FormBtn}`} type="submit">Add Book</button>
+        <button className={`${Style.FormBtn}`} disabled={work === 'AddBook'} type="submit">
+          {
+            work !== 'AddBook' && (
+              <p>Add Book</p>
+            )
+          }
+          {
+            work === 'AddBook' && <Loader />
+          }
+        </button>
       </form>
     </div>
   );
