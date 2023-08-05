@@ -6,7 +6,6 @@ import BookForm from '../../Forms/book-form/BookForm';
 import { removeBook, addBook, fetchBooks } from '../../redux/books/booksSlice';
 import Loader from '../../components/Loader';
 
-/* eslint-disable react-hooks/exhaustive-deps */
 export default function Books() {
   const { books, work } = useSelector((state) => state.book);
   const dispatch = useDispatch();
