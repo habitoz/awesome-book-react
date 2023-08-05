@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import PropTypes from 'prop-types';
